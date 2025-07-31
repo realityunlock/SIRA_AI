@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIRA AI – Threat Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #e9f0fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 450px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1d4ed8;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        textarea, input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            background: #1d4ed8;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            border-radius: 6px;
+            color: #78350f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ SIRA AI</h1>
+        
+        <!-- Text Threat Form -->
+        <form method="POST" enctype="multipart/form-data">
+            <label for="text_input"><strong>📝 Text Input:</strong></label>
+            <textarea name="text_input" rows="4" placeholder="Enter the text you want to check for threats..."></textarea>
+            <input type="hidden" name="action" value="text">
+            <button type="submit">🔍 Check Text</button>
+        </form>
+
+        <!-- Image Threat Form -->
+        <form method="POST" enctype="multipart/form-data">
+            <label for="file"><strong>🖼️ Upload Image:</strong></label>
+            <input type="file" name="file" accept="image/*">
+            <input type="hidden" name="action" value="image">
+            <button type="submit">🧠 Check Image</button>
+        </form>
+
+        <!-- Result -->
+        {% if result %}
+        <div class="result">
+            <strong>🔎 Result:</strong><br>
+            {{ result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
